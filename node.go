@@ -139,7 +139,8 @@ func (n *Node) Ensure(name ...string) *Node {
 func (n *Node) Find(name ...string) *Node {
 	t := n
 	for _, v := range name {
-		if v == "" {
+		// ignoring invalid name components
+		if len(v) == 0 || v == "." || v == ".." {
 			continue
 		}
 		if t != nil && t.Children != nil {
